@@ -10,6 +10,10 @@ resume_file = current_dir / "assets" / "CV.pdf"
 profile_pic = current_dir / "assets" / "picture-cv.jpg"
 
 
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}</style>")
+
 # --- GENERAL SETTINGS ---
 PAGE_TITLE = "Digital CV | Mitzio Ercambrack"
 PAGE_ICON = ":smiley_cat:"
@@ -19,10 +23,10 @@ Data Analyst & Engenier.
 """
 EMAIL = "machetearte58@gmail.com"
 SOCIAL_MEDIA = {
-    "YouTube": "https://youtube.com/c/codingisfun",
+    #"YouTube": "https://youtube.com/c/codingisfun",
     "LinkedIn": "https://linkedin.com",
     "GitHub": "https://github.com",
-    "Twitter": "https://twitter.com",
+    #"Twitter": "https://twitter.com",
 }
 PROJECTS = {
     "🏆 Sales Dashboard - Comparing sales across three stores": "https://youtu.be/Sb0A9i6d320",
@@ -34,14 +38,24 @@ PROJECTS = {
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
+#---background---
+page_bd = f''' 
+    <style>
+        [data-testid = "stMain"]{{
+                background: #020024;
+                background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+        }}
+    </style>
+'''
+st.markdown(page_bd, unsafe_allow_html=True)
 
 # --- LOAD CSS, PDF & PROFIL PIC ---
-with open(css_file) as f:
-    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+#with open(css_file) as f:
+    #st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+load_css(css_file)
 with open(resume_file, "rb") as pdf_file:
     PDFbyte = pdf_file.read()
 profile_pic = Image.open(profile_pic)
-
 
 # --- HERO SECTION ---
 col1, col2 = st.columns(2, gap="small")
@@ -52,10 +66,11 @@ with col2:
     st.title(NAME)
     st.write(DESCRIPTION)
     st.download_button(
-        label=" 📄 Download Resume",
+        label = "⬇️ Download Resume",
         data=PDFbyte,
         file_name=resume_file.name,
         mime="application/octet-stream",
+        key="download"
     )
     st.write("📫", EMAIL)
 

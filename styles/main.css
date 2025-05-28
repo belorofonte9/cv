@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap');
 
 
-* {font-family: 'Readex Pro';}
+* {font-family: 'Readex Pro';
+    color: white;
+}
 
-body{
+body {
 
     background: #020024;
     background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
@@ -27,6 +29,20 @@ hr {
     margin-bottom: 5%;
 }
 
-#MainMenu {visibility: hidden;}
+.st-key-download button {
+    background: chartreuse;
+}
+
+.st-key-download button p {
+    color:darkred;
+}
+
+div[data-testid="stStatusWidget"] {
+    visibility: hidden;
+    height: 0%;
+    position: fixed;
+    }
+
+MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
